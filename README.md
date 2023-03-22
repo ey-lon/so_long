@@ -10,7 +10,7 @@ The player lose when they touch an enemy patrol.
 | ------- | ----------- |
 | `make` | compile *so_long* (std. version) |
 | `make bonus` | compile *so_long* (bonus version) |
-| `make maps` | (bonus) update the in-game list of levels |
+| `make maps` | update the in-game list of levels (bonus) |
 
 ## How to play
 | command | game | menu (bonus) |
