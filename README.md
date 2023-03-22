@@ -9,5 +9,14 @@ The player lose when they touch an enemy patrol.
 | command | description |
 | ------- | ----------- |
 | `make` | compile *so_long* (std. version) |
-| `make bonus` | compile *so_long (bonus version) |
+| `make bonus` | compile *so_long* (bonus version) |
 | `make maps` | (bonus) update the in-game list of levels |
+
+## How to play
+| command | in-game | in menu (bonus) |
+| ------- | ------- | --------------- |
+| `W` or `↑` | Move up | Navigate the Menu |
+| `A` or `←` | Move left | Navigate the Menu |
+| `S` or `↓` | Move down | Navigate the Menu |
+| `D` or `→` | Move right | Navigate the Menu |
+| `ESC` | Quit Game (std.) - Go back to menu (bonus) | Quit Game |
