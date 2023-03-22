@@ -13,7 +13,7 @@ The player lose when they touch an enemy patrol.
 | `make maps` | (bonus) update the in-game list of levels |
 
 ## How to play
-| command | in-game | in menu (bonus) |
+| command | game | menu (bonus) |
 | ------- | ------- | --------------- |
 | `W` or `↑` | Move up | Navigate the Menu |
 | `A` or `←` | Move left | Navigate the Menu |
