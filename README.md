@@ -20,3 +20,4 @@ The player lose when they touch an enemy patrol.
 | `S` or `↓` | Move down | Navigate the Menu |
 | `D` or `→` | Move right | Navigate the Menu |
 | `ESC` | Quit Game (std.) - Go back to menu (bonus) | Quit Game |
+| | Confirm |
