@@ -14,42 +14,62 @@ UPD = $(GREEN)successfully $(YELL)updated$(NOCOL)
 
 CC = cc
 
-NAME = so_long
+RM = /bin/rm -f
 
-LIBFT = Libft/libft.a
-
-MINILIBX = minilibx-linux/libmlx.a
-
-SRC =	source/game.c \
-	source/deal_imgs.c \
-	source/deal_mat.c \
-	source/deal_key.c \
-	source/check_mat.c \
-	source/floodfill.c \
-	source/sl_utils.c
-	
-BNS =	source_bonus/main_bonus.c \
-	source_bonus/game_bonus.c \
-	source_bonus/end_screen_bonus.c \
-	source_bonus/deal_imgs_bonus.c \
-	source_bonus/deal_mat_bonus.c \
-	source_bonus/deal_key_bonus.c \
-	source_bonus/deal_menu_bonus.c \
-	source_bonus/deal_enemy_bonus.c \
-	source_bonus/display_menu_bonus.c \
-	source_bonus/check_mat_bonus.c \
-	source_bonus/floodfill_bonus.c \
-	source_bonus/sl_utils_bonus.c
-	
-LSTM = list_maps.txt
-
-LOGO = eylon_logo.txt
-	
 FLAGS = -no-pie -Wall -Werror -Wextra -g
 
 LINKS = -lm -lX11 -lXext
 
-all: $(NAME)
+NAME = so_long
+
+LIBFT = libft.a
+
+MINILIBX = libmlx.a
+
+#paths-----------------------------------------
+
+LBT_F = Libft/
+MLX_F = minilibx-linux/
+SRC_F = source/
+BNS_F = source_bonus/
+
+#files-----------------------------------------
+
+SRC =	game.c \
+	deal_imgs.c \
+	deal_mat.c \
+	deal_key.c \
+	check_mat.c \
+	floodfill.c \
+	sl_utils.c
+	
+BNS =	main_bonus.c \
+	game_bonus.c \
+	end_screen_bonus.c \
+	deal_imgs_bonus.c \
+	deal_mat_bonus.c \
+	deal_key_bonus.c \
+	deal_menu_bonus.c \
+	deal_enemy_bonus.c \
+	display_menu_bonus.c \
+	check_mat_bonus.c \
+	floodfill_bonus.c \
+	sl_utils_bonus.c
+	
+LSTM = list_maps.txt
+
+LOGO = eylon_logo.txt
+
+#prefix----------------------------------------
+
+LIBFT := $(addprefix $(LBT_F),$(LIBFT))
+MINILIBX := $(addprefix $(MLX_F),$(MINILIBX))
+SRC := $(addprefix $(SRC_F),$(SRC))
+BNS := $(addprefix $(BNS_F),$(BNS))
+
+#rules-----------------------------------------
+
+all: bonus
 
 $(NAME): libcomp comp
 
@@ -81,12 +101,12 @@ clean:		libclean
 libfclean:
 		make fclean -C Libft
 
-fclean:   	libfclean
+fclean:   	clean
 		if [ -f $(NAME) ]; then\
-			rm -rf $(NAME);\
+			$(RM) $(NAME);\
 			echo "$(TCOL)$(NAME) $(RMD)";\
 		fi
-		rm -rf txt/$(LSTM)
+		$(RM) txt/$(LSTM)
 		
 re: fclean all
 
