@@ -3,7 +3,7 @@ A small 2d game called *so_long* using the MiniLibX.
 The player has to collect all the coins in order to be able to complete the levels.
 
 ## Bonus
-The player lose when they touch an enemy patrol.
+The player loses when they touch an enemy patrol.
 
 ## Usage
 | command | description |
