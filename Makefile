@@ -1,4 +1,4 @@
-#----------------------------------------------
+#colors-----------------------------------------
 
 NOCOL = \e[0m
 GREEN = \e[1;92m
@@ -14,9 +14,9 @@ UPD = $(GREEN)successfully $(YELL)updated$(NOCOL)
 
 CC = cc
 
-RM = /bin/rm -f
+RM = /bin/rm -rf
 
-FLAGS = -no-pie -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra -g
 
 LINKS = -lm -lX11 -lXext
 
@@ -32,6 +32,9 @@ LBT_F = Libft/
 MLX_F = minilibx-linux/
 SRC_F = source/
 BNS_F = source_bonus/
+OBJ_S_F = obj_s/
+OBJ_B_F = obj_b/
+TXT_F = txt/
 
 #files-----------------------------------------
 
@@ -60,56 +63,85 @@ LSTM = list_maps.txt
 
 LOGO = eylon_logo.txt
 
-#prefix----------------------------------------
+#----------------------------------------------
 
 LIBFT := $(addprefix $(LBT_F),$(LIBFT))
 MINILIBX := $(addprefix $(MLX_F),$(MINILIBX))
-SRC := $(addprefix $(SRC_F),$(SRC))
-BNS := $(addprefix $(BNS_F),$(BNS))
+
+#objects---------------------------------------
+
+OBJ_S = $(SRC:.c=.o)
+OBJ_B = $(BNS:.c=.o)
+OBJ_S := $(addprefix $(OBJ_S_F),$(OBJ_S))
+OBJ_B := $(addprefix $(OBJ_B_F),$(OBJ_B))
+
+$(OBJ_S_F)%.o : $(SRC_F)%.c
+	$(CC) -c $(FLAGS) $< -o $@
+
+$(OBJ_B_F)%.o : $(BNS_F)%.c
+	$(CC) -c $(FLAGS) $< -o $@
 
 #rules-----------------------------------------
 
 all: bonus
 
-$(NAME): libcomp comp
+$(NAME): obj_s libcomp $(OBJ_S)
+		$(CC) $(FLAGS) $(OBJ_S) $(MINILIBX) $(LIBFT) $(LINKS) -o $(NAME)
+		echo "$(TCOL)$(NAME) (std. version) $(CMP)"
+
+#bonus------
+bonus: obj_b libcomp $(OBJ_B) maps logo
+		$(CC) $(FLAGS) $(OBJ_B) $(MINILIBX) $(LIBFT) $(LINKS) -o $(NAME)
+		echo "$(TCOL)$(NAME) (bonus version) $(CMP)"
 
 logo:
 		echo "$(GREEN)"
-		cd txt && cat $(LOGO)
+		cd $(TXT_F) && cat $(LOGO)
 		echo "$(NOCOL)"
 
 maps:
-		cd maps && ls *.ber -a > ../txt/$(LSTM)
+		cd maps && ls *.ber -a > ../$(TXT_F)$(LSTM)
 		echo "$(TCOL)$(LSTM) $(UPD)"
+#-----------	
 
-libcomp:
-		@make -C Libft
+clean: libclean
+		make clean -C $(MLX_F)
+		make clean -C $(LBT_F)
+		$(RM) $(OBJ_S)
+		$(RM) $(OBJ_B)
+		$(RM) $(OBJ_S_F)
+		$(RM) $(OBJ_B_F)
 
-comp:
-		$(CC) $(FLAGS) $(SRC) $(MINILIBX) $(LIBFT) $(LINKS) -o $(NAME)
-		echo "$(TCOL)$(NAME) (std. version) $(CMP)"
-	
-bonus: libcomp maps logo
-		$(CC) $(FLAGS) $(BNS) $(MINILIBX) $(LIBFT) $(LINKS) -o $(NAME)
-		echo "$(TCOL)$(NAME) (bonus version) $(CMP)"
-
-libclean:
-		make clean -C Libft
-		
-clean:		libclean
-
-libfclean:
-		make fclean -C Libft
-
-fclean:   	clean
+fclean:   	clean libfclean
+		make fclean -C $(LBT_F)
+		make clean -C $(MLX_F)
 		if [ -f $(NAME) ]; then\
 			$(RM) $(NAME);\
 			echo "$(TCOL)$(NAME) $(RMD)";\
 		fi
-		$(RM) txt/$(LSTM)
-		
+		$(RM) $(TXT_F)$(LSTM)
+
 re: fclean all
 
-.PHONY: all re clean fclean bonus maps
+#libft and MLX------
+libcomp:
+		make -C $(LBT_F)
+		make -C $(MLX_F)
+
+libfclean:
+		make fclean -C $(LBT_F)
+
+libclean:
+		make clean -C $(LBT_F)
+		make clean -C $(MLX_F)
+#-------------------
+
+obj_s:
+	mkdir $(OBJ_S_F)
+
+obj_b:
+	mkdir $(OBJ_B_F)
+
+.PHONY: all $(NAME) re clean fclean bonus maps logo libcomp libclean libfclean obj_s obj_b
 
 .SILENT:
