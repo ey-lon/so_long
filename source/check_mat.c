@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_mat.c                                     :+:      :+:    :+:   */
+/*   check_mat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abettini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 09:28:28 by abettini          #+#    #+#             */
-/*   Updated: 2022/12/20 09:33:48 by abettini         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:21:02 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,13 @@ int	ft_mat_check(char *path, t_game *g)
 	check = ft_mat_reader(path, &g->map);
 	err = 0;
 	if (check == -1)
-		err = ft_printf("Error\nmap does not exist.\n");
+		err = ft_printf("Error\nMap does not exist.\n");
 	else
 	{
 		if (ft_square_check(g->map.mat) != 0)
-			err = ft_printf("Error\nmap is not rectangular.\n");
+			err = ft_printf("Error\nMap is not rectangular.\n");
 		if (ft_wall_check(g->map.mat, g->map.size.x, g->map.size.y))
-			err = ft_printf("Error\nmap is not surrounded by walls.\n");
+			err = ft_printf("Error\nMap is not surrounded by walls.\n");
 		if (ft_char_check(g, 1))
 			err = ft_printf("Error\nInvalid elements.\n");
 		if (ft_path_check(g))
