@@ -8,9 +8,12 @@ The player loses when they touch an enemy patrol.
 ## Usage
 | command | description |
 | ------- | ----------- |
-| `make` | compile *so_long* (std. version) |
+| `make so_long` | compile *so_long* (std. version) |
 | `make bonus` | compile *so_long* (bonus version) |
 | `make maps` | update the in-game list of levels (bonus) |
+| `make clean` | remove tmp files |
+| `make fclean` | remove tmp files and executable |
+| `make re` | force recompile |
 
 ## How to play
 | command | game | menu (bonus) |
