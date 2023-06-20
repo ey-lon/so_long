@@ -15,8 +15,12 @@ The player loses when they touch an enemy patrol.
 | `make fclean` | remove tmp files and executable |
 | `make re` | force recompile |
 
+## How to launch
+`./so_long <map.ber>` (std.version) <br>
+`./so_long` (bonus version)
+
 ## How to play
-| command | game | menu (bonus) |
+| command | in-game | menu (bonus) |
 | ------- | ------- | --------------- |
 | `W` or `↑` | Move up | Navigate the Menu |
 | `A` or `←` | Move left | Navigate the Menu |
