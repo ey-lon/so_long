@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 10:44:05 by abettini          #+#    #+#             */
-/*   Updated: 2023/06/20 15:13:13 by abettini         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:33:03 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int	ft_type_check(char *path)
 
 	i = ft_strlen(path);
 	i -= 4;
-	if (i < 0)
+	if (i <= 0)
+		return (1);
+	if (path[i - 1] == '/')
 		return (1);
 	return (ft_strncmp(&path[i], ".ber", 5));
 }
