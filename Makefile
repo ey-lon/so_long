@@ -142,6 +142,6 @@ obj_s:
 obj_b:
 	mkdir $(OBJ_B_F)
 
-.PHONY: all $(NAME) re clean fclean bonus maps logo libcomp libclean libfclean obj_s obj_b
+.PHONY: all re clean fclean bonus maps logo libcomp libclean libfclean obj_s obj_b
 
 .SILENT:
