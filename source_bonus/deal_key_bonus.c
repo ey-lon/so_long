@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   deal_key_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abettini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:52:40 by abettini          #+#    #+#             */
-/*   Updated: 2022/12/20 09:53:10 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:55:58 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ static int	ft_event_check(char next_pos, t_game *g)
 		ft_close_game(g);
 		ft_end(0);
 	}
-	if (next_pos == 'E')
+	else if (next_pos == 'E')
 	{
 		ft_printf("\n\033[1m\033[32mVICTORY!\033[0m\n");
 		ft_close_game(g);
 		ft_end(1);
 	}
-	if (next_pos == 'C')
+	else if (next_pos == 'C')
+	{
 		g->c_cur++;
+	}
 	return (0);
 }
 

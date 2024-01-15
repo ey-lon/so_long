@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deal_enemy.c                                       :+:      :+:    :+:   */
+/*   deal_enemy_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abettini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:40:49 by abettini          #+#    #+#             */
-/*   Updated: 2023/01/20 11:40:51 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:57:23 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static int	ft_enemy_event(int x, int y, t_game *g)
 
 	check = 0;
 	if (g->map.mat[y][x] == '0')
+	{
 		g->map.mat[y][x] = 'X';
+	}
 	else if (g->map.mat[y][x] == 'P')
 	{
 		ft_printf("\n\033[1m\033[1;31mGAME OVER!\033[0m\n");
@@ -26,7 +28,9 @@ static int	ft_enemy_event(int x, int y, t_game *g)
 		ft_end(0);
 	}
 	else
+	{
 		check = 1;
+	}
 	return (check);
 }
 

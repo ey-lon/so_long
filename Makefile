@@ -137,10 +137,10 @@ libclean:
 #-------------------
 
 obj_s:
-	mkdir $(OBJ_S_F)
+	mkdir -p $(OBJ_S_F)
 
 obj_b:
-	mkdir $(OBJ_B_F)
+	mkdir -p $(OBJ_B_F)
 
 .PHONY: all re clean fclean bonus maps logo libcomp libclean libfclean obj_s obj_b
 

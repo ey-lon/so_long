@@ -6,22 +6,26 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 09:28:28 by abettini          #+#    #+#             */
-/*   Updated: 2023/06/20 15:21:43 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:39:05 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static int	ft_square_check(char **mat)
+static int	ft_rectangle_check(char **mat)
 {
-	int	check;
-	int	y;
+	int		check;
+	int		y;
+	size_t	len;
 
-	y = 0;
+	if (!mat || !*mat)
+		return (1);
 	check = 0;
+	len = ft_strlen(*mat);
+	y = 1;
 	while (mat[y] && check == 0)
 	{
-		if (ft_strlen(mat[y]) != ft_strlen(mat[0]))
+		if (ft_strlen(mat[y]) != len)
 			check = 1;
 		y++;
 	}
@@ -34,9 +38,9 @@ static int	ft_wall_check(char **mat, int xmax, int ymax)
 	int	check;
 
 	check = 0;
-	i = 0;
 	if (mat)
 	{
+		i = 0;
 		while (i < ymax && check == 0)
 		{
 			if (mat[i][0] != '1' || mat[i][xmax - 1] != '1')
@@ -54,11 +58,13 @@ static int	ft_wall_check(char **mat, int xmax, int ymax)
 	return (check);
 }
 
-static int	ft_char_check(t_game *g, int check)
+static int	ft_char_check(t_game *g)
 {
 	int	x;
 	int	y;
+	int	check;
 
+	check = 0;
 	y = 0;
 	while (g->map.mat[y] != 0)
 	{
@@ -73,34 +79,32 @@ static int	ft_char_check(t_game *g, int check)
 				check += 3;
 			else if (g->map.mat[y][x] != '0' && g->map.mat[y][x] != '1'
 					&& g->map.mat[y][x] != 'F')
-				check += 4;
+				return (1);
 			x++;
 		}
 		y++;
 	}
-	if (check == 6 && g->c_max >= 1)
-		check = 0;
-	return (check);
+	return (!(check == 5 && g->c_max > 0));
 }
 
 static int	ft_path_check(t_game *g)
 {
 	int	res;
-	int	check;
+	int	start;
 
+	start = 0;
 	g->hero_pos.y = 0;
-	check = 0;
-	while (g->map.mat[g->hero_pos.y] != 0 && check == 0)
+	while (g->map.mat[g->hero_pos.y] != 0 && start == 0)
 	{
 		g->hero_pos.x = 0;
-		while (g->map.mat[g->hero_pos.y][g->hero_pos.x] != '\0' && check == 0)
+		while (g->map.mat[g->hero_pos.y][g->hero_pos.x] != '\0' && start == 0)
 		{
 			if (g->map.mat[g->hero_pos.y][g->hero_pos.x] == 'P')
-				check = 1;
+				start = 1;
 			else
 				g->hero_pos.x++;
 		}
-		if (!check)
+		if (!start)
 			g->hero_pos.y++;
 	}
 	res = ft_flood_fill(g->map.mat, g->map.size, g->hero_pos);
@@ -119,13 +123,13 @@ int	ft_mat_check(char *path, t_game *g)
 	else
 	{
 		g->c_max = 0;
-		if (ft_square_check(g->map.mat) != 0)
+		if (ft_rectangle_check(g->map.mat) != 0)
 			err = ft_printf("Error\nMap is not rectangular.\n");
-		if (ft_wall_check(g->map.mat, g->map.size.x, g->map.size.y))
+		else if (ft_wall_check(g->map.mat, g->map.size.x, g->map.size.y))
 			err = ft_printf("Error\nMap is not surrounded by walls.\n");
-		if (ft_char_check(g, 1))
+		else if (ft_char_check(g))
 			err = ft_printf("Error\nInvalid elements.\n");
-		if (ft_path_check(g))
+		else if (ft_path_check(g))
 			err = ft_printf("Error\nThe exit is unreachable.\n");
 		ft_free_mat(g->map.mat);
 	}

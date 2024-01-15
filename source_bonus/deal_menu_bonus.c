@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:25:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/06/20 15:20:03 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:58:29 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static int	ft_esc(t_menu *m)
 {
 	if (!m->page)
+	{
 		ft_close(m);
+	}
 	else
 	{
 		m->page = 0;

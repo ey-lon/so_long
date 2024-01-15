@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abettini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:52:40 by abettini          #+#    #+#             */
-/*   Updated: 2022/12/20 09:53:10 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:55:42 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ static int	ft_event_check(char next_pos, t_game *g)
 		write(1, "\nGAME OVER!\n", 12);
 		ft_close_game(g);
 	}
-	if (next_pos == 'E')
+	else if (next_pos == 'E')
 	{
 		write(1, "\nVICTORY!\n", 10);
 		ft_close_game(g);
 	}
-	if (next_pos == 'C')
+	else if (next_pos == 'C')
+	{
 		g->c_cur++;
+	}
 	return (0);
 }
 

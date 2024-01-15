@@ -4,6 +4,7 @@ The player has to collect all the coins in order to be able to complete the leve
 
 ## Bonus
 The player loses when they touch an enemy patrol.
+Player and enemy animation.
 
 ## Usage
 | command | description |

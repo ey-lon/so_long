@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   deal_mat_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abettini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:52:40 by abettini          #+#    #+#             */
-/*   Updated: 2022/12/20 09:53:10 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:51:26 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 static int	ft_mat_size(t_mat *t)
 {
-	t->size.x = 0;
 	t->size.y = 0;
-	while (t->mat[0][t->size.x] != '\0')
-		t->size.x++;
-	while (1)
+	t->size.x = 0;
+	if (t->mat)
 	{
-		if (!t->mat[t->size.y])
+		while (t->mat[t->size.y])
 		{
-			break ;
+			t->size.y++;
 		}
-		t->size.y++;
+		if (t->mat[0])
+		{
+			while (t->mat[0][t->size.x] != '\0')
+			{
+				t->size.x++;
+			}
+		}
 	}
 	return (0);
 }
