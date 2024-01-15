@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 10:44:05 by abettini          #+#    #+#             */
-/*   Updated: 2023/06/21 17:33:03 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:49:31 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,23 @@ int	ft_type_check(char *path)
 int	ft_display_stats(t_game *g, int color)
 {
 	char	*str;
-	char	*str2;
-	char	*str3;
+	char	*temp1;
+	char	*temp2;
 
-	str2 = ft_itoa(g->moves);
-	str = ft_strjoin("Moves: ", str2);
+	temp1 = ft_itoa(g->moves);
+	str = ft_strjoin("Moves: ", temp1);
 	mlx_string_put(g->game.mlx, g->game.win, 10, 12, color, str);
+	free(temp1);
 	free(str);
-	free(str2);
-	str2 = ft_itoa(g->c_cur);
-	str3 = ft_strjoin("Collectibles: ", str2);
-	free(str2);
-	str2 = ft_strjoin(str3, " / ");
-	free(str3);
-	str3 = ft_itoa(g->c_max);
-	str = ft_strjoin(str2, str3);
-	free(str2);
-	free(str3);
+	temp1 = ft_itoa(g->c_cur);
+	temp2 = ft_strjoin("Collectibles: ", temp1);
+	free(temp1);
+	temp1 = ft_strjoin(temp2, " / ");
+	free(temp2);
+	temp2 = ft_itoa(g->c_max);
+	str = ft_strjoin(temp1, temp2);
+	free(temp1);
+	free(temp2);
 	mlx_string_put(g->game.mlx, g->game.win, 10, 27, color, str);
 	free(str);
 	return (0);
